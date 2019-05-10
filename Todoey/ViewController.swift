@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UITableViewController {
-let itemarry=["find mike","buyeggos","destory demogo"]
+    
+   var itemarry=["find mike","buyeggos","destory demogo"]
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +36,26 @@ let itemarry=["find mike","buyeggos","destory demogo"]
         
         // choose the cell on flash
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    //add new item
+    @IBAction func addbuttonpress(_ sender: UIBarButtonItem) {
+         var textfiled = UITextField()
+        let alert=UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
+        let action=UIAlertAction(title: "Add Item", style: .default) { (action) in
+            //what will happn once the user clicks the Add Item button on our uialert
+            self.itemarry.append(textfiled.text!)
+            self.tableView.reloadData()
+        }
+        alert.addTextField { (alerttextfiled) in
+            alerttextfiled.placeholder="create new item"
+            textfiled=alerttextfiled
+            print(alerttextfiled.text!)
+           
+            
+            
+        }
+        alert.addAction(action)
+       self.present(alert,animated: true,completion: nil)
     }
     
 }
